@@ -33,14 +33,17 @@ class Product
 		return true;
 	}
 	static public function update($nam,$prod) {
-		$db = new Database();
+
 		$sql = "UPDATE producto SET nombre='".$prod->name."', precio='".$prod->price."', categoria_id='".$prod->category."', descripcion='".$prod->description."' WHERE nombre='".$nam."'
 					";
+
+		$db = new Database();
+		
 		$db->query($sql);
-		$lastId = (int)$db->mysqli->insert_id;
-		echo $lastId;
+		//$lastId = (int)$db->mysqli->insert_id;
+		//echo $lastId;
 		$db->close();
-		return true;
+		
 	}
 	static function get() {
 		$sql = " SELECT

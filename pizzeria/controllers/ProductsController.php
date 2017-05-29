@@ -24,6 +24,7 @@ if( isset($_POST['funcion']) ) {
 else if( isset($_POST['actualizarP']) )
 {
 	require_once("../models/Product.php");
+	require_once("../models/Cleaner.php");
 	$act = $_POST['actualizarP'];
 	$productos = json_decode($_POST['productos']);
 
@@ -31,12 +32,8 @@ else if( isset($_POST['actualizarP']) )
 	{
 		$nombre = Cleaner::cleanInput($item->_nombre);
 		$categoria = (int)Cleaner::cleanInput($item->_categoria);
-		$producto = new Product($nombre,
-		
-		$item->_precio,
-		$categoria,
-		$item->_descripcion);
-		Product::update($act,$item);
+		$producto = new Product($nombre,$item->_precio,$categoria,$item->_descripcion);
+		Product::update($act,$producto);
 
 	}
 
